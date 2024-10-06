@@ -1,6 +1,7 @@
 import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import useManageTasks from './hooks/useManageTasks';
 import CompletedList from './components/templates/CompletedList';
+import TodoList from './components/templates/TodoList';
 
 const App: React.FC = () => {
   // Use the useCreateTask hook to manage task-related state and functions
@@ -17,7 +18,11 @@ const App: React.FC = () => {
  
             
             {/* Todo List */}
-
+            <TodoList 
+              tasks={tasks} 
+              markAsComplete={markAsComplete} 
+              deleteTask={deleteTask}
+            />
 
             {/* Completed List */}
             <CompletedList
