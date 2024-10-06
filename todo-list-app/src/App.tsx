@@ -6,7 +6,7 @@ import InputForm from './components/templates/InputForm';
 
 const App: React.FC = () => {
   // Use the useCreateTask hook to manage task-related state and functions
-  const { tasks, newTask, addTask, deleteTask, markAsComplete, handleInputChange, handleAddTask, error } = useManageTasks();
+  const { tasks, newTask, deleteTask, markAsComplete, handleInputChange, handleAddTask, error } = useManageTasks();
 
 
 
