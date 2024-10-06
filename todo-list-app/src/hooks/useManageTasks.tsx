@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { Tasks } from '../types/Tasks';
 import { sampleTasks } from '../data/sampleData';
 
@@ -43,7 +43,7 @@ export function useCreateTask() {
         );
     };
 
-    return { tasks, newTask, handleInputChange, addTask, deleteTask, markAsComplete };
+    return { tasks, newTask, error, handleInputChange, addTask, handleAddTask, deleteTask, markAsComplete };
 };
 
 export default useCreateTask;

@@ -2,10 +2,11 @@ import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import useManageTasks from './hooks/useManageTasks';
 import CompletedList from './components/templates/CompletedList';
 import TodoList from './components/templates/TodoList';
+import InputForm from './components/templates/InputForm';
 
 const App: React.FC = () => {
   // Use the useCreateTask hook to manage task-related state and functions
-  const { tasks, newTask, addTask, deleteTask, markAsComplete, handleInputChange } = useManageTasks();
+  const { tasks, newTask, addTask, deleteTask, markAsComplete, handleInputChange, handleAddTask, error } = useManageTasks();
 
 
 
@@ -15,8 +16,13 @@ const App: React.FC = () => {
             
             
             {/* Input Form for adding tasks */}
+            <InputForm 
+              newTask={newTask}
+              handleInputChange={handleInputChange}
+              handleAddTask={handleAddTask} 
+              error={error} 
+            />
  
-            
             {/* Todo List */}
             <TodoList 
               tasks={tasks} 
