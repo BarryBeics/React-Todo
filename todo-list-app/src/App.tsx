@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import useManageTasks from './hooks/useManageTasks';
+import CompletedList from './components/templates/CompletedList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+  // Use the useCreateTask hook to manage task-related state and functions
+  const { tasks, newTask, addTask, deleteTask, markAsComplete, handleInputChange } = useManageTasks();
+
+
+
+    return (
+        <FluentProvider theme={webLightTheme}>
+            <div style={{ maxWidth: '766px', margin: '0 auto', padding: '20px' }}>
+            
+            
+            {/* Input Form for adding tasks */}
+ 
+            
+            {/* Todo List */}
+
+
+            {/* Completed List */}
+            <CompletedList
+            tasks={tasks}
+            markAsComplete={markAsComplete}
+            />
+            
+          
+            </div>
+        </FluentProvider>
+    );
+};
 
 export default App;
