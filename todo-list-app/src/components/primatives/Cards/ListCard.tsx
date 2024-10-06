@@ -4,10 +4,10 @@ interface ListCardProps {
     title: string;
     svgSrc: string;
     svgAlt: string;
-    child: React.ReactNode;
+    children: React.ReactNode;
 }
 
-const ListCard: React.FC<ListCardProps> = ({ title, svgSrc, svgAlt, child }) => {
+const ListCard: React.FC<ListCardProps> = ({ title, svgSrc, svgAlt, children }) => {
     return (
         <Card style={{
             width: '100%',
@@ -33,7 +33,7 @@ const ListCard: React.FC<ListCardProps> = ({ title, svgSrc, svgAlt, child }) => 
 
             {/* Card Content */}
             <div>
-                {child}
+                {children}
             </div>
         </Card>
     );

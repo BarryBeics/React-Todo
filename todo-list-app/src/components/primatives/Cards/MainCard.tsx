@@ -1,10 +1,10 @@
 import { Card } from '@fluentui/react-components';
 
 interface MainCardProps {
-    child: React.ReactNode;
+    children: React.ReactNode;
 }
 
-const MainCard: React.FC<MainCardProps> = ({ child }) => {
+const MainCard: React.FC<MainCardProps> = ({ children }) => {
     return (
         <Card style={{
             width: '100%',
@@ -14,7 +14,7 @@ const MainCard: React.FC<MainCardProps> = ({ child }) => {
 
             {/* Card Content */}
             <div>
-                {child}
+                {children}
             </div>
         </Card>
     );
