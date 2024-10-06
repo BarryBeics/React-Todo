@@ -27,8 +27,10 @@ export function useCreateTask() {
             description: newTask.description || '',
             completed: false
         };
-        setTasks([...tasks, newtask]);
-        setNewTask({ title: '', description: '' });
+       
+        const updatedTasks = [...tasks, newtask];
+        setTasks(updatedTasks);
+        setNewTask({ title: '', description: '' }); // Clear the form after adding the task
     };
 
     const handleAddTask = () => {
@@ -41,13 +43,16 @@ export function useCreateTask() {
     };
 
     const deleteTask = (taskId: string) => {
-        setTasks(tasks.filter(task => task.id !== taskId));
+        const updatedTasks = tasks.filter(task => task.id !== taskId);
+        setTasks(updatedTasks);
     };
+    
 
     const markAsComplete = (taskId: string) => {
-        setTasks(
-            tasks.map(task => task.id === taskId ? { ...task, completed: !task.completed } : task)
+        const updatedTasks = tasks.map(task =>
+            task.id === taskId ? { ...task, completed: !task.completed } : task
         );
+        setTasks(updatedTasks);
     };
 
     return { tasks, newTask, error, handleInputChange, addTask, handleAddTask, deleteTask, markAsComplete };

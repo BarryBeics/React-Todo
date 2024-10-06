@@ -22,14 +22,15 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, markAsComplete, deleteTask }
         >
             {incompleteTasks.length > 0 ? ( 
                 <TaskList
-                tasks={tasks} 
-                markAsComplete={markAsComplete} 
-                showCompleted={false}
-                checkmarkColour='grey'
-                showDeleteButton={true}  // No delete button required for completed tasks
+                    tasks={tasks} 
+                    markAsComplete={markAsComplete} 
+                    deleteTask={deleteTask} 
+                    showCompleted={false}
+                    checkmarkColour='grey'
+                    showDeleteButton={true}
                 />
             ) : (
-                <Caption1>You have no completed tasks.</Caption1> 
+                <Caption1>You have no tasks, why not add one?</Caption1> 
             )}
         </ListCard>
     );

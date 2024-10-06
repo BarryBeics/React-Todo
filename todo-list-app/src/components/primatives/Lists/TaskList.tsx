@@ -64,7 +64,10 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
 
                                     {showDeleteButton && deleteTask && (
                                         <Button 
-                                            icon={<Delete24Filled />} 
+                                        icon={<Delete24Filled />}
+                                        onClick={() => {
+                                            deleteTask?.(task.id);
+                                        }}
                                             appearance="transparent"
                                             style={{ color: 'red' }}
                                             title='Delete Task'
