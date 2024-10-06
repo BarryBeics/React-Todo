@@ -5,6 +5,7 @@ import { sampleTasks } from '../data/sampleData';
 export function useCreateTask() {
     const [tasks, setTasks] = useState<Tasks[]>(sampleTasks);
     const [newTask, setNewTask] = useState<{ title: string; description: string }>({ title: '', description: '' });
+    const [error, setError] = useState<string | null>(null); 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
         setNewTask({ ...newTask, [field]: e.target.value });
@@ -21,6 +22,15 @@ export function useCreateTask() {
         };
         setTasks([...tasks, newtask]);
         setNewTask({ title: '', description: '' });
+    };
+
+    const handleAddTask = () => {
+        if (!newTask.title) {
+            setError('Task title is required'); // Set error message
+        } else {
+            setError(null); // Clear error message if valid
+            addTask(); // Proceed with adding the task
+        }
     };
 
     const deleteTask = (taskId: string) => {
