@@ -1,5 +1,5 @@
 import TaskList from '../../primatives/Lists/TaskList';
-import ListCard from '../../primatives/Cards/ListCard';
+import ListCard from '../../primatives/Cards/SectionCard';
 import type { Tasks } from '../../../types/Tasks';
 import undrawCompletedTasks from '../../../assets/undraw_completed_tasks.svg';
 import { Caption1 } from '@fluentui/react-components';
