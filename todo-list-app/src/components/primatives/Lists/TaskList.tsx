@@ -1,6 +1,8 @@
 import { Button, Subtitle2, Body1 } from '@fluentui/react-components';
 import { CheckmarkCircle24Filled, Delete24Filled } from '@fluentui/react-icons';
 import type { Tasks } from '../../../types/Tasks';
+import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
+import useActionDialog from '../../../hooks/useActionDialog';
 
 interface TaskListProps {
     tasks: Tasks[];
@@ -12,6 +14,7 @@ interface TaskListProps {
 }
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, showCompleted, checkmarkColour, showDeleteButton = true }) => {
+    const { isDialogOpen, selectedTask, openDialog, closeDialog, confirmAction } = useActionDialog();
 
     return (
         <div style={{ 
@@ -64,10 +67,8 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
 
                                     {showDeleteButton && deleteTask && (
                                         <Button 
-                                        icon={<Delete24Filled />}
-                                        onClick={() => {
-                                            deleteTask?.(task.id);
-                                        }}
+                                            icon={<Delete24Filled />}
+                                            onClick={() => openDialog(task)} 
                                             appearance="transparent"
                                             style={{ color: 'red' }}
                                             title='Delete Task'
@@ -76,9 +77,18 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
                                             Delete
                                         </Button>
                                     )}
-                                </div>
-                            </div>
-                    ))}
+                        </div>
+                    </div>
+                ))}
+
+            {/* Confirmation Dialog */}
+            {isDialogOpen && selectedTask && (
+                <ConfirmationDialog
+                    taskTitle={selectedTask.title}
+                    onConfirm={() => deleteTask && confirmAction(deleteTask)} // Safely check if deleteTask is defined
+                    onCancel={closeDialog}
+                />
+            )}
         </div>
     );
 };
