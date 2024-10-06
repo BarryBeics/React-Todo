@@ -5,10 +5,7 @@ import TodoList from './components/templates/TodoList';
 import InputForm from './components/templates/InputForm';
 
 const App: React.FC = () => {
-  // Use the useCreateTask hook to manage task-related state and functions
   const { tasks, newTask, deleteTask, markAsComplete, handleInputChange, handleAddTask, error } = useManageTasks();
-
-
 
     return (
         <FluentProvider theme={webLightTheme}>
@@ -36,7 +33,6 @@ const App: React.FC = () => {
             markAsComplete={markAsComplete}
             />
             
-          
             </div>
         </FluentProvider>
     );
