@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Tasks } from '../types/Tasks';
 import { sampleTasks } from '../data/sampleData';
+import { saveToLocalStorage, loadFromLocalStorage } from '../utils/localStorage';
+
+const STORAGE_KEY = 'tasks';
 
 export function useCreateTask() {
-    const [tasks, setTasks] = useState<Tasks[]>(sampleTasks);
+    const [tasks, setTasks] = useState<Tasks[]>(() => loadFromLocalStorage<Tasks[]>(STORAGE_KEY, sampleTasks));
     const [newTask, setNewTask] = useState<{ title: string; description: string }>({ title: '', description: '' });
     const [error, setError] = useState<string | null>(null); 
+
+    useEffect(() => {
+        saveToLocalStorage(STORAGE_KEY, tasks);
+    }, [tasks]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
         setNewTask({ ...newTask, [field]: e.target.value });
