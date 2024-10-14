@@ -10,7 +10,6 @@ interface ListCardProps {
 const ListCard: React.FC<ListCardProps> = ({ title, svgSrc, svgAlt, children }) => {
     return (
         <Card style={{
-            width: '100%',
             margin: '20px',
             padding: '16px'
         }}>

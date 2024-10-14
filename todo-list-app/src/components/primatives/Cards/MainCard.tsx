@@ -7,7 +7,6 @@ interface MainCardProps {
 const MainCard: React.FC<MainCardProps> = ({ children }) => {
     return (
         <Card style={{
-            width: '100%',
             margin: '20px',
             padding: '16px'
         }}>
