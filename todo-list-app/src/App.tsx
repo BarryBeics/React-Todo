@@ -1,9 +1,7 @@
 import { FluentProvider, teamsLightTheme, teamsDarkTheme } from '@fluentui/react-components';
 import useManageTasks from './hooks/useManageTasks';
 import { useState } from 'react';
-import CompletedList from './components/templates/CompletedList';
-import TodoList from './components/templates/TodoList';
-import InputForm from './components/templates/InputForm';
+import { CompletedList, InputForm, TodoList } from './components/templates';
 import MainCard from './components/primatives/Cards/MainCard';
 import ToggleTheme from './components/primatives/ToggleTheme/ToggleTheme';
 

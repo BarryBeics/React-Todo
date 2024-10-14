@@ -2,7 +2,7 @@ import { Input, useThemeClassName } from '@fluentui/react-components';
 import { AddCircle24Filled } from '@fluentui/react-icons';
 import SectionCard from '../../primatives/Cards/SectionCard';
 import undrawAddTask from '../../../assets/undraw_add_tasks.svg';
-import { Button } from '../../primatives/Buttons';
+import Button from '../../primatives/Buttons/Button';
 import Stack from '../../primatives/Stack/Stack';
 
 interface InputFormProps {
