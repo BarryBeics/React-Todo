@@ -1,4 +1,4 @@
-import { Card, CardPreview, Subtitle2 } from '@fluentui/react-components';
+import { Card, CardPreview, Subtitle2, useThemeClassName } from '@fluentui/react-components';
 
 interface ListCardProps {
     title: string;
@@ -8,11 +8,9 @@ interface ListCardProps {
 }
 
 const ListCard: React.FC<ListCardProps> = ({ title, svgSrc, svgAlt, children }) => {
+    const themeClassName = useThemeClassName();
     return (
-        <Card style={{
-            margin: '20px',
-            padding: '16px'
-        }}>
+        <Card className={`list-card ${themeClassName}`}> 
 
             <Subtitle2>
                 {title}

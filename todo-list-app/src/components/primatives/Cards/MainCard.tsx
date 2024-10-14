@@ -1,15 +1,13 @@
-import { Card } from '@fluentui/react-components';
+import { Card, useThemeClassName } from '@fluentui/react-components';
 
 interface MainCardProps {
     children: React.ReactNode;
 }
 
 const MainCard: React.FC<MainCardProps> = ({ children }) => {
+    const themeClass = useThemeClassName();
     return (
-        <Card style={{
-            margin: '20px',
-            padding: '16px'
-        }}>
+        <Card className={`list-card ${themeClass}`}> 
 
             {/* Card Content */}
             <div>

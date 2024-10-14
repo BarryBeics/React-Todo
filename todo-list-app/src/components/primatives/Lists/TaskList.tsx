@@ -1,4 +1,4 @@
-import { Subtitle2, Body1 } from '@fluentui/react-components';
+import { Subtitle2, Body1, useThemeClassName } from '@fluentui/react-components';
 import { CheckmarkCircle24Filled, Delete24Filled } from '@fluentui/react-icons';
 import type { Tasks } from '../../../types/Tasks';
 import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
@@ -17,9 +17,10 @@ interface TaskListProps {
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, showCompleted, checkmarkColour, showDeleteButton = true }) => {
     const { isDialogOpen, selectedTask, openDialog, closeDialog, confirmAction } = useActionDialog();
+    const themeClassName = useThemeClassName();
 
     return (
-        <Stack>
+        <Stack className={themeClassName}>
                     {tasks
                         .filter(task => task.completed === showCompleted)
                         .map(task => (

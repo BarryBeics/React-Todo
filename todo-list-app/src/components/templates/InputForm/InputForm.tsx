@@ -1,4 +1,4 @@
-import { Input, Text } from '@fluentui/react-components';
+import { Input, useThemeClassName } from '@fluentui/react-components';
 import { AddCircle24Filled } from '@fluentui/react-icons';
 import SectionCard from '../../primatives/Cards/SectionCard';
 import undrawAddTask from '../../../assets/undraw_add_tasks.svg';
@@ -13,6 +13,7 @@ interface InputFormProps {
 }
 
 const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handleAddTask, error }) => {
+    const themeClassName = useThemeClassName();
 
     return (
         <SectionCard 
@@ -27,10 +28,7 @@ const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handl
                     placeholder="Enter a task title..."
                     value={newTask.title}
                     onChange={(e) => handleInputChange(e, 'title')}
-                    style={{ 
-                        width: '100%', 
-                        borderColor: error ? 'red' : '' 
-                    }} // Red border if there's an error
+                    className={`fui-Input ${themeClassName} ${error ? 'input-error' : ''}`}
                 />
                 
                 {/* Optional Task Description Input */}
@@ -39,11 +37,8 @@ const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handl
                     placeholder="Enter an optional task description..."
                     value={newTask.description}
                     onChange={(e) => handleInputChange(e, 'description')}
-                    style={{ width: '100%' }}
+                    className={`fui-Input ${themeClassName}`}
                 />
-                
-                {/* Error Message */}
-                {error && <Text style={{ color: 'red' }}>{error}</Text>} 
                 
                 <Button
                     appearance='primary'

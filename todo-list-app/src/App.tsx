@@ -1,17 +1,27 @@
-import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { FluentProvider, teamsLightTheme, teamsDarkTheme } from '@fluentui/react-components';
 import useManageTasks from './hooks/useManageTasks';
+import { useState } from 'react';
 import CompletedList from './components/templates/CompletedList';
 import TodoList from './components/templates/TodoList';
 import InputForm from './components/templates/InputForm';
 import MainCard from './components/primatives/Cards/MainCard';
+import ToggleTheme from './components/primatives/ToggleTheme/ToggleTheme';
 
 const App: React.FC = () => {
   const { tasks, newTask, deleteTask, markAsComplete, handleInputChange, handleAddTask, error } = useManageTasks();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-    return (
-        <FluentProvider theme={webLightTheme}>
-          <MainCard>
-            <div style={{ maxWidth: '766px', margin: '0 auto', padding: '20px' }}>
+  const toggleTheme = () => {
+    setIsDarkMode(prevMode => !prevMode);
+  };
+
+  return (
+    <FluentProvider theme={isDarkMode ? teamsDarkTheme : teamsLightTheme}>
+      <MainCard>        
+        <ToggleTheme 
+          isDarkMode={isDarkMode} 
+          toggleTheme={toggleTheme} 
+        />
             
             
             {/* Input Form for adding tasks */}
@@ -35,8 +45,7 @@ const App: React.FC = () => {
             markAsComplete={markAsComplete}
             />
             
-            </div>
-          </MainCard>  
+            </MainCard>
         </FluentProvider>
     );
 };
