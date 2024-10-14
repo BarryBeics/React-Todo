@@ -1,8 +1,9 @@
-import { Button, Subtitle2, Body1 } from '@fluentui/react-components';
+import { Subtitle2, Body1 } from '@fluentui/react-components';
 import { CheckmarkCircle24Filled, Delete24Filled } from '@fluentui/react-icons';
 import type { Tasks } from '../../../types/Tasks';
 import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
 import useActionDialog from '../../../hooks/useActionDialog';
+import IconButton from '../../primatives/Buttons/IconButton';
 
 interface TaskListProps {
     tasks: Tasks[];
@@ -54,28 +55,26 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
                                         gap: '10px' 
                                     }}
                                 >
-                                    <Button 
+                                    <IconButton 
                                         icon={<CheckmarkCircle24Filled />} 
                                         onClick={() => markAsComplete(task.id)} 
-                                        style={{ color: checkmarkColour }} 
-                                        appearance="transparent"
-                                        title='Mark as Complete'
-                                        aria-label='Mark as Complete'
-                                    >
-                                        Complete
-                                    </Button>
+                                        color={checkmarkColour} 
+                                        appearance='transparent' 
+                                        title='Mark as Complete' 
+                                        ariaLabel='Mark as Complete' 
+                                        label='Complete'
+                                    />
 
                                     {showDeleteButton && deleteTask && (
-                                        <Button 
-                                            icon={<Delete24Filled />}
-                                            onClick={() => openDialog(task)} 
-                                            appearance="transparent"
-                                            style={{ color: 'red' }}
-                                            title='Delete Task'
-                                            aria-label='Delete Task'
-                                        >
-                                            Delete
-                                        </Button>
+                                        <IconButton 
+                                        icon={<Delete24Filled />} 
+                                        onClick={() => openDialog(task)} 
+                                        color='#c50f1f' 
+                                        appearance='transparent' 
+                                        title='Delete Task' 
+                                        ariaLabel='Delete Task' 
+                                        label='Delete' 
+                                    />
                                     )}
                         </div>
                     </div>

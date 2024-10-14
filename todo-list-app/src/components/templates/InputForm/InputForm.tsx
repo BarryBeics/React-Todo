@@ -1,7 +1,8 @@
-import { Button, Input, Text } from '@fluentui/react-components';
+import { Input, Text } from '@fluentui/react-components';
 import { AddCircle24Filled } from '@fluentui/react-icons';
 import SectionCard from '../../primatives/Cards/SectionCard';
 import undrawAddTask from '../../../assets/undraw_add_tasks.svg';
+import { Button } from '../../primatives/Buttons';
 
 interface InputFormProps {
     newTask: { title: string; description: string };
@@ -43,13 +44,12 @@ const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handl
                 {/* Error Message */}
                 {error && <Text style={{ color: 'red' }}>{error}</Text>} 
                 
-                <Button 
+                <Button
                     appearance='primary'
                     icon={<AddCircle24Filled />}
                     onClick={handleAddTask}
-                >
-                    Add Task
-                </Button>
+                    label='Add Task'        
+                />
             </div>
 
         </SectionCard>
