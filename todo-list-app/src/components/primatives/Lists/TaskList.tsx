@@ -4,6 +4,7 @@ import type { Tasks } from '../../../types/Tasks';
 import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
 import useActionDialog from '../../../hooks/useActionDialog';
 import IconButton from '../../primatives/Buttons/IconButton';
+import Stack from '../../primatives/Stack/Stack';
 
 interface TaskListProps {
     tasks: Tasks[];
@@ -18,12 +19,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
     const { isDialogOpen, selectedTask, openDialog, closeDialog, confirmAction } = useActionDialog();
 
     return (
-        <div style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                gap: '10px' 
-                }}
-                >
+        <Stack>
                     {tasks
                         .filter(task => task.completed === showCompleted)
                         .map(task => (
@@ -88,7 +84,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
                     onCancel={closeDialog}
                 />
             )}
-        </div>
+        </Stack>
     );
 };
 

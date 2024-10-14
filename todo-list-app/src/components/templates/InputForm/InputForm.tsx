@@ -3,6 +3,7 @@ import { AddCircle24Filled } from '@fluentui/react-icons';
 import SectionCard from '../../primatives/Cards/SectionCard';
 import undrawAddTask from '../../../assets/undraw_add_tasks.svg';
 import { Button } from '../../primatives/Buttons';
+import Stack from '../../primatives/Stack/Stack';
 
 interface InputFormProps {
     newTask: { title: string; description: string };
@@ -19,7 +20,7 @@ const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handl
         svgSrc={undrawAddTask} 
         svgAlt='Add Task' 
         >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <Stack>
                 {/* Required Task Title Input */}
                 <Input
                     type="text"
@@ -50,7 +51,7 @@ const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handl
                     onClick={handleAddTask}
                     label='Add Task'        
                 />
-            </div>
+            </Stack>
 
         </SectionCard>
     );
