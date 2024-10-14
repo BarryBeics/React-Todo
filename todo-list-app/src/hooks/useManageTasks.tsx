@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { Tasks } from '../types/Tasks';
 import { sampleTasks } from '../data/sampleData';
 import { saveToLocalStorage, loadFromLocalStorage } from '../utils/localStorage';
 
 const STORAGE_KEY = 'tasks';
 
-export function useCreateTask() {
+export function useManageTasks() {
     const [tasks, setTasks] = useState<Tasks[]>(() => loadFromLocalStorage<Tasks[]>(STORAGE_KEY, sampleTasks));
     const [newTask, setNewTask] = useState<{ title: string; description: string }>({ title: '', description: '' });
     const [error, setError] = useState<string | null>(null); 
@@ -18,29 +18,27 @@ export function useCreateTask() {
         setNewTask({ ...newTask, [field]: e.target.value });
     };
 
-    const addTask = () => {
-        if (!newTask.title) return;
-        
-        const newtask: Tasks = {
+    const addTask = useCallback(() => {
+        if (!newTask.title.trim()) {
+            setError('Task title is required');
+            return;
+        }
+
+        const newTaskObj: Tasks = {
             id: crypto.randomUUID(),
-            title: newTask.title,
-            description: newTask.description || '',
+            title: newTask.title.trim(),
+            description: newTask.description?.trim() || '',
             completed: false
         };
-       
-        const updatedTasks = [...tasks, newtask];
-        setTasks(updatedTasks);
-        setNewTask({ title: '', description: '' }); // Clear the form after adding the task
-    };
 
-    const handleAddTask = () => {
-        if (!newTask.title) {
-            setError('Task title is required'); // Set error message
-        } else {
-            setError(null); // Clear error message if valid
-            addTask(); // Proceed with adding the task
-        }
-    };
+        setTasks(prevTasks => [...prevTasks, newTaskObj]);
+        setNewTask({ title: '', description: '' });  // Clear the form after adding
+        setError(null); // Clear error if task was added successfully
+    }, [newTask]);
+
+    const handleAddTask = useCallback(() => {
+        addTask();
+    }, [addTask]);
 
     const deleteTask = (taskId: string) => {
         const updatedTasks = tasks.filter(task => task.id !== taskId);
@@ -58,4 +56,4 @@ export function useCreateTask() {
     return { tasks, newTask, error, handleInputChange, addTask, handleAddTask, deleteTask, markAsComplete };
 };
 
-export default useCreateTask;
+export default useManageTasks;
