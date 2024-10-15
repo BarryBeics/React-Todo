@@ -1,9 +1,10 @@
-import { Input, useThemeClassName } from '@fluentui/react-components';
+import { Field, Input, useThemeClassName } from '@fluentui/react-components';
 import { AddCircle24Filled } from '@fluentui/react-icons';
 import SectionCard from '../../primatives/Cards/SectionCard';
 import undrawAddTask from '../../../assets/undraw_add_tasks.svg';
 import Button from '../../primatives/Buttons/Button';
 import Stack from '../../primatives/Stack/Stack';
+import './InputForm.css';
 
 interface InputFormProps {
     newTask: { title: string; description: string };
@@ -17,37 +18,43 @@ const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handl
 
     return (
         <SectionCard 
-        title="Add Task"
-        svgSrc={undrawAddTask} 
-        svgAlt='Add Task' 
+            title="Add Task"
+            svgSrc={undrawAddTask} 
+            svgAlt='Add Task'
+            footerContent={
+                <Button
+                    onClick={handleAddTask}
+                    appearance="primary"
+                    icon={<AddCircle24Filled />}
+                    label="Add Task"              
+                />
+            }
         >
             <Stack>
-                {/* Required Task Title Input */}
-                <Input
-                    type="text"
-                    placeholder="Enter a task title..."
-                    value={newTask.title}
-                    onChange={(e) => handleInputChange(e, 'title')}
-                    className={`fui-Input ${themeClassName} ${error ? 'input-error' : ''}`}
-                />
+                {/* Task Title Field with Validation */}
+                <Field
+                    label="Task Title"
+                    validationMessage={error}  // Validation message shown on error
+                    required  // Adds required field indicator
+                >
+                    <Input
+                        placeholder="Enter a task title..."
+                        value={newTask.title}
+                        onChange={(e) => handleInputChange(e, 'title')}
+                        className={`fui-Input ${themeClassName} ${error ? 'input-error' : ''}`}
+                    />
+                </Field>
                 
                 {/* Optional Task Description Input */}
-                <Input
-                    type="text"
-                    placeholder="Enter an optional task description..."
-                    value={newTask.description}
-                    onChange={(e) => handleInputChange(e, 'description')}
-                    className={`fui-Input ${themeClassName}`}
-                />
-                
-                <Button
-                    appearance='primary'
-                    icon={<AddCircle24Filled />}
-                    onClick={handleAddTask}
-                    label='Add Task'        
-                />
-            </Stack>
-
+                <Field>
+                    <Input
+                        placeholder="Enter an optional task description..."
+                        value={newTask.description}
+                        onChange={(e) => handleInputChange(e, 'description')}
+                        className={`fui-Input ${themeClassName}`}
+                        />
+                </Field>
+                </Stack>
         </SectionCard>
     );
 };

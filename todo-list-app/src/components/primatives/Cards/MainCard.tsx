@@ -5,9 +5,9 @@ interface MainCardProps {
 }
 
 const MainCard: React.FC<MainCardProps> = ({ children }) => {
-    const themeClass = useThemeClassName();
+    const themeClassName = useThemeClassName();
     return (
-        <Card className={`list-card ${themeClass}`}> 
+        <Card className={`list-card ${themeClassName}`}> 
 
             {/* Card Content */}
             <div>

@@ -5,6 +5,7 @@ import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
 import useActionDialog from '../../../hooks/useActionDialog';
 import IconButton from '../../primatives/Buttons/IconButton';
 import Stack from '../../primatives/Stack/Stack';
+import './Lists.css'; 
 
 interface TaskListProps {
     tasks: Tasks[];
@@ -21,58 +22,39 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
 
     return (
         <Stack className={themeClassName}>
-                    {tasks
-                        .filter(task => task.completed === showCompleted)
-                        .map(task => (
-                            <div 
-                                key={task.id}
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: '10px',
-                                    borderBottom: '1px solid #ccc'
-                                }}
-                            >
-                                {/* Task title and optional description */}
-                               <div 
-                                    style={{ 
-                                        display: 'flex', 
-                                        flexDirection: 'column' 
-                                    }}
-                                >
-                                    <Subtitle2>{task.title}</Subtitle2>
-                                    {task.description && <Body1>{task.description}</Body1>}
-                                </div>
+            {tasks
+                .filter(task => task.completed === showCompleted)
+                .map(task => (
+                    <div key={task.id} className="task-item">
+                        {/* Task title and optional description */}
+                        <div className="task-info">
+                            <Subtitle2>{task.title}</Subtitle2>
+                            {task.description && <Body1>{task.description}</Body1>}
+                        </div>
 
-                                {/* Buttons */}
-                                <div 
-                                    style={{ 
-                                        display: 'flex', 
-                                        gap: '10px' 
-                                    }}
-                                >
-                                    <IconButton 
-                                        icon={<CheckmarkCircle24Filled />} 
-                                        onClick={() => markAsComplete(task.id)} 
-                                        color={checkmarkColour} 
-                                        appearance='transparent' 
-                                        title='Mark as Complete' 
-                                        ariaLabel='Mark as Complete' 
-                                        label='Complete'
-                                    />
+                        {/* Buttons */}
+                        <div className="task-buttons">
+                        <IconButton 
+                            icon={<CheckmarkCircle24Filled />} 
+                            onClick={() => markAsComplete(task.id)} 
+                            color={checkmarkColour} 
+                            appearance="transparent" 
+                            title="Mark as Complete" 
+                            ariaLabel="Mark as Complete" 
+                            label="Complete" 
+                        />
 
-                                    {showDeleteButton && deleteTask && (
-                                        <IconButton 
-                                        icon={<Delete24Filled />} 
-                                        onClick={() => openDialog(task)} 
-                                        color='#c50f1f' 
-                                        appearance='transparent' 
-                                        title='Delete Task' 
-                                        ariaLabel='Delete Task' 
-                                        label='Delete' 
-                                    />
-                                    )}
+                        {showDeleteButton && deleteTask && (
+                            <IconButton 
+                                icon={<Delete24Filled />} 
+                                onClick={() => openDialog(task)} 
+                                color="#c50f1f" 
+                                appearance="transparent" 
+                                title="Delete Task" 
+                                ariaLabel="Delete Task" 
+                                label="Delete" 
+                            />
+                        )}
                         </div>
                     </div>
                 ))}
@@ -81,7 +63,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, markAsComplete, deleteTask, 
             {isDialogOpen && selectedTask && (
                 <ConfirmationDialog
                     taskTitle={selectedTask.title}
-                    onConfirm={() => deleteTask && confirmAction(deleteTask)} // Safely check if deleteTask is defined
+                    onConfirm={() => deleteTask && confirmAction(deleteTask)}
                     onCancel={closeDialog}
                 />
             )}

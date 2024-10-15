@@ -11,7 +11,7 @@ interface IconButtonProps {
     className?: string;           
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ onClick, icon, label, title, ariaLabel, appearance = 'transparent', color }) => {
+const IconButton: React.FC<IconButtonProps> = ({ onClick, icon, label, title, ariaLabel, appearance = 'transparent', color, className }) => {
     return (
         <Button
             icon={icon}
@@ -20,6 +20,7 @@ const IconButton: React.FC<IconButtonProps> = ({ onClick, icon, label, title, ar
             title={title}
             aria-label={ariaLabel}
             style={{ color }}
+            className={className}
         >
             <span className='button-text'>{label}</span>
         </Button>

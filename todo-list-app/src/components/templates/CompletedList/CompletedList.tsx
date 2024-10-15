@@ -24,7 +24,7 @@ const CompletedList: React.FC<CompletedListProps> = ({ tasks, markAsComplete }) 
                 tasks={tasks} 
                 markAsComplete={markAsComplete} 
                 showCompleted={true}
-                checkmarkColour='green'
+                checkmarkColour='#4A9F30'
                 showDeleteButton={false}  // No delete button required for completed tasks
                 />
             ) : (
