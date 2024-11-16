@@ -2,7 +2,7 @@ import { FluentProvider, teamsLightTheme, teamsDarkTheme } from '@fluentui/react
 import useManageTasks from './hooks/useManageTasks';
 import { useState } from 'react';
 import { CompletedList, InputForm, TodoList } from './components/templates';
-import MainCard from './components/primatives/Cards/MainCard';
+import WrapperCard from './components/primatives/Cards/WrapperCard';
 import ToggleTheme from './components/primatives/ToggleTheme/ToggleTheme';
 
 const App: React.FC = () => {
@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
   return (
     <FluentProvider theme={isDarkMode ? teamsDarkTheme : teamsLightTheme}>
-      <MainCard>        
+      <WrapperCard>        
         <ToggleTheme 
           isDarkMode={isDarkMode} 
           toggleTheme={toggleTheme} 
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             markAsComplete={markAsComplete}
             />
             
-            </MainCard>
+            </WrapperCard>
         </FluentProvider>
     );
 };
