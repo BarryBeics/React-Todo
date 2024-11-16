@@ -1,5 +1,5 @@
 import TaskList from '../../primatives/Lists/TaskList';
-import ListCard from '../../primatives/Cards/SectionCard';
+import WrapperCard from '../../primatives/Cards/WrapperCard';
 import type { Tasks } from '../../../types/Tasks';
 import undrawTodoList from '../../../assets/undraw_to_do_list.svg';
 import { Caption1 } from '@fluentui/react-components';
@@ -14,12 +14,10 @@ interface TodoListProps {
 const TodoList: React.FC<TodoListProps> = ({ tasks, markAsComplete, deleteTask }) => {
     const incompleteTasks = tasks.filter(task => !task.completed);
 
+    console.log("Todo List")
+
     return (
-        <ListCard
-        title='To Do List'
-        svgSrc={undrawTodoList}
-        svgAlt='To Do List'
-        >
+        <WrapperCard>
             {incompleteTasks.length > 0 ? ( 
                 <TaskList
                     tasks={tasks} 
@@ -32,7 +30,7 @@ const TodoList: React.FC<TodoListProps> = ({ tasks, markAsComplete, deleteTask }
             ) : (
                 <Caption1>You have no tasks, why not add one?</Caption1> 
             )}
-        </ListCard>
+        </WrapperCard>
     );
 };
 

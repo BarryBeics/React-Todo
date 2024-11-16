@@ -1,5 +1,6 @@
 import { Card, CardPreview, Subtitle2, CardFooter, useThemeClassName, makeStyles, tokens } from '@fluentui/react-components';
 import './Cards.css';
+import React from 'react';
 
 const useStyles = makeStyles({
     previewBg: {
@@ -9,19 +10,19 @@ const useStyles = makeStyles({
 
 
 interface ListCardProps {
-    title: string;
+    title: React.ReactNode;
     svgSrc: string;
     svgAlt: string;
     children: React.ReactNode;
     footerContent?: React.ReactNode;
 }
 
-const ListCard: React.FC<ListCardProps> = ({ title, svgSrc, svgAlt, children, footerContent }) => {
-  const classes = useStyles();
-  const themeClassName = useThemeClassName();
-
-
-
+const ListCard: React.FC<ListCardProps> = React.memo(({ title, svgSrc, svgAlt, children, footerContent }) => {
+    const classes = useStyles();
+    const themeClassName = useThemeClassName();
+  
+    
+    
     return (
         <Card className={`list-card ${themeClassName}` }>  {/* Apply dynamic class here */}
             <Subtitle2 className='subtitle-spacing'>
@@ -48,6 +49,6 @@ const ListCard: React.FC<ListCardProps> = ({ title, svgSrc, svgAlt, children, fo
             )}
         </Card>
     );
-};
+});
 
 export default ListCard;
