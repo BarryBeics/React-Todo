@@ -1,6 +1,6 @@
 import { Subtitle2, Body1, useThemeClassName } from '@fluentui/react-components';
 import { CheckmarkCircle24Filled, Delete24Filled } from '@fluentui/react-icons';
-import type { Tasks } from '../../../types/Tasks';
+import type { Business } from '../../../types/Business';
 import BusinessCard from '../../primatives/Cards/BusinessCard';
 import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
 import useActionDialog from '../../../hooks/useActionDialog';
@@ -10,7 +10,7 @@ import undrawTodoList from '../../../assets/undraw_to_do_list.svg';
 import './Lists.css'; 
 
 interface TaskListProps {
-    tasks: Tasks[];
+    tasks: Business[];
     markAsComplete: (taskId: string) => void;
     deleteTask?: (taskId: string) => void; // Optional, as completed tasks don't need deletion
     showCompleted: boolean;  // Filter for completed or incomplete tasks
@@ -39,6 +39,19 @@ const TaskList: React.FC<TaskListProps> = ({
                         title={<Subtitle2>{task.title}</Subtitle2>} // Use Subtitle2 for consistent styling        
                         svgSrc={undrawTodoList}
                         svgAlt='To Do List'
+                        // Wrap multiple elements with a fragment
+                        turnover={
+                            <>
+                                <Subtitle2>Turnover:</Subtitle2> 
+                                <Body1>{task.turnover}</Body1>
+                            </>
+                        }
+                        leasehold={
+                            <>
+                                <Subtitle2>Leasehold:</Subtitle2> 
+                                <Body1>{task.leasehold}</Body1>
+                            </>
+                        }
                         footerContent={
                             <div className="task-buttons">
                                 {/* Mark as Complete Button */}

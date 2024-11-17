@@ -7,7 +7,10 @@ import Stack from '../../primatives/Stack/Stack';
 import './InputForm.css';
 
 interface InputFormProps {
-    newTask: { title: string; description: string };
+    newTask: { title: string; 
+            turnover: string;   
+           leasehold: string; 
+         description: string };
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>, field: string) => void;
     handleAddTask: () => void;
     error: string | null;
@@ -39,16 +42,40 @@ const InputForm: React.FC<InputFormProps> = ({ newTask, handleInputChange, handl
                 >
                     <Input
                         placeholder="Enter a task title..."
+                        name="title"
                         value={newTask.title}
                         onChange={(e) => handleInputChange(e, 'title')}
                         className={`fui-Input ${themeClassName} ${error ? 'input-error' : ''}`}
                     />
                 </Field>
                 
+                {/* Optional Task Turnover price Input */}
+                <Field>
+                    <Input
+                        placeholder="Enter an optional task description..."
+                        name="turnover"
+                        value={newTask.turnover}
+                        onChange={(e) => handleInputChange(e, 'description')}
+                        className={`fui-Input ${themeClassName}`}
+                        />
+                </Field>
+
+                {/* Optional Task Leasehold price Input */}
+                <Field>
+                    <Input
+                        placeholder="Enter an optional task description..."
+                        name="leasehold"
+                        value={newTask.leasehold}
+                        onChange={(e) => handleInputChange(e, 'description')}
+                        className={`fui-Input ${themeClassName}`}
+                        />
+                </Field>
+
                 {/* Optional Task Description Input */}
                 <Field>
                     <Input
                         placeholder="Enter an optional task description..."
+                        name="description"
                         value={newTask.description}
                         onChange={(e) => handleInputChange(e, 'description')}
                         className={`fui-Input ${themeClassName}`}

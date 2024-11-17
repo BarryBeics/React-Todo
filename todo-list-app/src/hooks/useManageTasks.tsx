@@ -1,22 +1,27 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { Tasks } from '../types/Tasks';
+import type { Business } from '../types/Business';
 import { sampleTasks } from '../data/sampleData';
 import { saveToLocalStorage, loadFromLocalStorage } from '../utils/localStorage';
 
 const STORAGE_KEY = 'tasks';
 
 export function useManageTasks() {
-    const [tasks, setTasks] = useState<Tasks[]>(() => loadFromLocalStorage<Tasks[]>(STORAGE_KEY, sampleTasks));
-    const [newTask, setNewTask] = useState<{ title: string; description: string }>({ title: '', description: '' });
+    const [tasks, setTasks] = useState<Business[]>(() => loadFromLocalStorage<Business[]>(STORAGE_KEY, sampleTasks));
+    const [newTask, setNewTask] = useState<{ title: string; turnover: string; leasehold: string; description: string }>({ title: '', turnover: '', leasehold: '', description: '' });
     const [error, setError] = useState<string | null>(null); 
 
     useEffect(() => {
         saveToLocalStorage(STORAGE_KEY, tasks);
     }, [tasks]);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
-        setNewTask({ ...newTask, [field]: e.target.value });
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setNewTask(prevTask => ({
+            ...prevTask,
+            [name]: value,
+        }));
     };
+    
 
     const addTask = useCallback(() => {
         if (!newTask.title.trim()) {
@@ -24,15 +29,17 @@ export function useManageTasks() {
             return;
         }
 
-        const newTaskObj: Tasks = {
+        const newTaskObj: Business = {
             id: crypto.randomUUID(),
             title: newTask.title.trim(),
+            turnover: newTask.turnover?.trim() || '',
+            leasehold: newTask.leasehold?.trim() || '',
             description: newTask.description?.trim() || '',
             completed: false
         };
 
         setTasks(prevTasks => [...prevTasks, newTaskObj]);
-        setNewTask({ title: '', description: '' });  // Clear the form after adding
+        setNewTask({ title: '', turnover: '', leasehold: '', description: '' });  // Clear the form after adding
         setError(null); // Clear error if task was added successfully
     }, [newTask]);
 

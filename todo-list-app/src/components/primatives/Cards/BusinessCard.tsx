@@ -13,11 +13,21 @@ interface BusinessCardProps {
     title: React.ReactNode;
     svgSrc: string;
     svgAlt: string;
+    turnover?: React.ReactNode;
+    leasehold?: React.ReactNode;
     children: React.ReactNode;
     footerContent?: React.ReactNode;
 }
 
-const BusinessCard: React.FC<BusinessCardProps> = React.memo(({ title, svgSrc, svgAlt, children, footerContent }) => {
+const BusinessCard: React.FC<BusinessCardProps> = React.memo(({ 
+    title,
+    svgSrc,
+    svgAlt,
+    turnover,
+    leasehold,
+    children,
+    footerContent
+}) => {
     const classes = useStyles();
     const themeClassName = useThemeClassName();
   
@@ -35,6 +45,17 @@ const BusinessCard: React.FC<BusinessCardProps> = React.memo(({ title, svgSrc, s
                 className='list-card-image'
                 />
             </CardPreview>
+            {/* Turnover and Leasehold */}
+            {turnover && (
+                <div className="card-turnover">
+                {turnover}
+                </div>
+            )}
+            {leasehold && (
+                <div className="card-leasehold">
+                {leasehold}
+                </div>
+            )}
 
             {/* Card Content */}
             <div>
