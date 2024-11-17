@@ -4,5 +4,5 @@ export type Item = {
     turnover?: string;
     leasehold?: string; 
     description?: string;
-    completed: boolean;
+    favourite: boolean;
 };
