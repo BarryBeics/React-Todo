@@ -1,5 +1,6 @@
 export { default as Button } from './Buttons/Button';
 export { default as IconButton } from './Buttons/IconButton';
+export { default as BusinessCard } from './Cards/BusinessCard';
 export { default as MainCard } from './Cards/WrapperCard';
 export { default as SectionCard } from './Cards/SectionCard';
 export { default as ConfirmationDialog } from './DialogBox/ConfirmationDialog';

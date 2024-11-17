@@ -1,7 +1,6 @@
 import TaskList from '../../primatives/Lists/TaskList';
 import WrapperCard from '../../primatives/Cards/WrapperCard';
 import type { Tasks } from '../../../types/Tasks';
-import undrawTodoList from '../../../assets/undraw_to_do_list.svg';
 import { Caption1 } from '@fluentui/react-components';
 
 

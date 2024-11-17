@@ -1,11 +1,11 @@
 import { Subtitle2, Body1, useThemeClassName } from '@fluentui/react-components';
 import { CheckmarkCircle24Filled, Delete24Filled } from '@fluentui/react-icons';
 import type { Tasks } from '../../../types/Tasks';
-import ListCard from '../../primatives/Cards/SectionCard';
+import BusinessCard from '../../primatives/Cards/BusinessCard';
 import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
 import useActionDialog from '../../../hooks/useActionDialog';
 import IconButton from '../../primatives/Buttons/IconButton';
-import Stack from '../../primatives/Stack/Stack';
+import Grid from '../../primatives/Grid/Grid';
 import undrawTodoList from '../../../assets/undraw_to_do_list.svg';
 import './Lists.css'; 
 
@@ -30,11 +30,11 @@ const TaskList: React.FC<TaskListProps> = ({
     const themeClassName = useThemeClassName();
 
     return (
-        <Stack className={themeClassName}>
+        <Grid className={themeClassName}>
             {tasks
                 .filter(task => task.completed === showCompleted)
                 .map(task => (
-                    <ListCard
+                    <BusinessCard
                         key={task.id}
                         title={<Subtitle2>{task.title}</Subtitle2>} // Use Subtitle2 for consistent styling        
                         svgSrc={undrawTodoList}
@@ -69,7 +69,7 @@ const TaskList: React.FC<TaskListProps> = ({
                     >
                         {/* Task Description */}
                         {task.description && <Body1>{task.description}</Body1>}
-                    </ListCard>
+                    </BusinessCard>
                 ))}
 
             {/* Confirmation Dialog */}
@@ -80,7 +80,7 @@ const TaskList: React.FC<TaskListProps> = ({
                     onCancel={closeDialog}
                 />
             )}
-        </Stack>
+        </Grid>
     );
 };
 
