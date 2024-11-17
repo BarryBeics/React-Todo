@@ -1,12 +1,12 @@
 import { FluentProvider, teamsLightTheme, teamsDarkTheme } from '@fluentui/react-components';
-import useManageTasks from './hooks/useManageTasks';
+import useManageItems from './hooks/useManageItems';
 import { useState } from 'react';
-import { CompletedList, InputForm, TodoList } from './components/templates';
+import { FavouriteList, InputForm, TodoList } from './components/templates';
 import WrapperCard from './components/primatives/Cards/WrapperCard';
 import ToggleTheme from './components/primatives/ToggleTheme/ToggleTheme';
 
 const App: React.FC = () => {
-  const { tasks, newTask, deleteTask, markAsComplete, handleInputChange, handleAddTask, error } = useManageTasks();
+  const { items, newItem, deleteItem, markAsFavourite, handleInputChange, handleAddItem, error } = useManageItems();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleTheme = () => {
@@ -22,25 +22,25 @@ const App: React.FC = () => {
         />
             
             
-            {/* Input Form for adding tasks */}
+            {/* Input Form for adding Items */}
             <InputForm 
-              newTask={newTask}
+              newItem={newItem}
               handleInputChange={handleInputChange}
-              handleAddTask={handleAddTask} 
+              handleAddItem={handleAddItem} 
               error={error} 
             />
  
             {/* Todo List */}
             <TodoList 
-              tasks={tasks} 
-              markAsComplete={markAsComplete} 
-              deleteTask={deleteTask}
+              items={items} 
+              markAsFavourite={markAsFavourite} 
+              deleteItem={deleteItem}
             />
 
-            {/* Completed List */}
-            <CompletedList
-            tasks={tasks}
-            markAsComplete={markAsComplete}
+            {/* Favourited List */}
+            <FavouriteList
+            items={items}
+            markAsFavourite={markAsFavourite}
             />
             
             </WrapperCard>

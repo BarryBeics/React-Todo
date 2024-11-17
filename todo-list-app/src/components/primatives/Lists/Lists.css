@@ -1,11 +1,11 @@
 
-.task-list-container {
+.item-list-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.task-item {
+.item-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,19 +13,19 @@
     border-bottom: 1px solid #4f52b2;
 }
 
-.task-info {
+.item-info {
     display: flex;
     flex-direction: column;
     flex-grow: 1; 
     margin-right: 10px; 
 }
 
-.task-buttons {
+.item-buttons {
     display: flex;
     gap: 10px; 
 }
 
-.task-buttons button {
+.item-buttons button {
     min-width: auto !important;
     width: auto; 
     padding: 4px;
@@ -39,7 +39,7 @@
 
 
 @media (max-width: 600px) {
-    .task-buttons {
+    .item-buttons {
         gap: 5px; 
     }
 
@@ -47,7 +47,7 @@
         display: none;
     }
 
-    .task-item {
+    .item-item {
         justify-content: flex-end;
     }
 }

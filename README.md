@@ -36,7 +36,7 @@ http://localhost:3000
 
 ## Project Overview
 
-This Todo List application allows users to manage their tasks effectively. Users can add, display, complete, and delete todos, with the option to implement additional features for an enhanced experience. The application is built using React and follows the Microsoft Fluent design guidelines.
+This Todo List application allows users to manage their items effectively. Users can add, display, complete, and delete todos, with the option to implement additional features for an enhanced experience. The application is built using React and follows the Microsoft Fluent design guidelines.
 
 ## Project Requirements
 

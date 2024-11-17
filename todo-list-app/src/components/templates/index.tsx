@@ -1,3 +1,3 @@
-export { default as CompletedList } from './CompletedList/CompletedList';
+export { default as FavouriteList } from './FavouriteList/FavouriteList';
 export { default as InputForm } from './InputForm/InputForm';
 export { default as TodoList } from './TodoList/TodoList';
