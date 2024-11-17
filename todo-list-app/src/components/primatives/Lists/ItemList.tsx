@@ -13,8 +13,8 @@ interface ItemListProps {
     items: Item[];
     markAsFavourite: (itemId: string) => void;
     deleteItem?: (itemId: string) => void; // Optional, as Favourited items don't need deletion
-    showFavourite: boolean;  // Filter for Favourited or inFavourite items
-    heartColour: string;  // Customize the colour of the checkmark
+    showFavourite: boolean;  // Filter for Favourited or nonFavourite items
+    heartColour: string;  // Customize the colour of the heart icon
     showDeleteButton?: boolean;  // Optionally show or hide delete button
 }
 
@@ -36,7 +36,23 @@ const ItemList: React.FC<ItemListProps> = ({
                 .map(item => (
                     <ItemCard
                         key={item.id}
-                        title={<Subtitle2>{item.title}</Subtitle2>} // Use Subtitle2 for consistent styling        
+                        // Adjust title and favourite button to be side by side
+                        title={
+                            <div className="title-container">
+                                <Subtitle2>{item.title}</Subtitle2>
+                                {/* Mark as Favourite Button (moved next to title) */}
+                                <IconButton
+                                    icon={<Heart24Regular />}
+                                    onClick={() => markAsFavourite(item.id)}
+                                    color={heartColour}
+                                    appearance="transparent"
+                                    title="Mark as Favourite"
+                                    ariaLabel="Mark as Favourite"
+                                    label="Favourite"
+                                    className="favourite-icon"
+                                />
+                            </div>
+                        }
                         svgSrc={undrawTodoList}
                         svgAlt='To Do List'
                         // Wrap multiple elements with a fragment
@@ -54,16 +70,6 @@ const ItemList: React.FC<ItemListProps> = ({
                         }
                         footerContent={
                             <div className="item-buttons">
-                                {/* Mark as Favourite Button */}
-                                <IconButton
-                                    icon={<Heart24Regular/>}
-                                    onClick={() => markAsFavourite(item.id)}
-                                    color={heartColour}
-                                    appearance="transparent"
-                                    title="Mark as Favourite"
-                                    ariaLabel="Mark as Favourite"
-                                    label="Favourite"
-                                />
 
                                 {/* Delete Button (if enabled) */}
                                 {showDeleteButton && deleteItem && (
