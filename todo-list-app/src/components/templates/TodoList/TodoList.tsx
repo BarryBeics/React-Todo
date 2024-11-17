@@ -1,11 +1,11 @@
 import TaskList from '../../primatives/Lists/TaskList';
 import WrapperCard from '../../primatives/Cards/WrapperCard';
-import type { Business } from '../../../types/Business';
+import type { Item } from '../../../types/Item';
 import { Caption1 } from '@fluentui/react-components';
 
 
 interface TodoListProps {
-    tasks: Business[];
+    tasks: Item[];
     markAsComplete: (taskId: string) => void;
     deleteTask: (taskId: string) => void;
 }

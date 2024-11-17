@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { Business } from '../types/Business';
+import type { Item } from '../types/Item';
 import { sampleTasks } from '../data/sampleData';
 import { saveToLocalStorage, loadFromLocalStorage } from '../utils/localStorage';
 
 const STORAGE_KEY = 'tasks';
 
 export function useManageTasks() {
-    const [tasks, setTasks] = useState<Business[]>(() => loadFromLocalStorage<Business[]>(STORAGE_KEY, sampleTasks));
+    const [tasks, setTasks] = useState<Item[]>(() => loadFromLocalStorage<Item[]>(STORAGE_KEY, sampleTasks));
     const [newTask, setNewTask] = useState<{ title: string; turnover: string; leasehold: string; description: string }>({ title: '', turnover: '', leasehold: '', description: '' });
     const [error, setError] = useState<string | null>(null); 
 
@@ -29,7 +29,7 @@ export function useManageTasks() {
             return;
         }
 
-        const newTaskObj: Business = {
+        const newTaskObj: Item = {
             id: crypto.randomUUID(),
             title: newTask.title.trim(),
             turnover: newTask.turnover?.trim() || '',

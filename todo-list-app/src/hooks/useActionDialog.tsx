@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import type { Business } from '../types/Business'; 
+import type { Item } from '../types/Item'; 
 
 const useActionDialog = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [selectedTask, setSelectedTask] = useState<Business | null>(null);
+    const [selectedTask, setSelectedTask] = useState<Item | null>(null);
 
-    const openDialog = (task: Business) => {
+    const openDialog = (task: Item) => {
         setSelectedTask(task);
         setIsDialogOpen(true);
     };

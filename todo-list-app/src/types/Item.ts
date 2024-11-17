@@ -1,4 +1,4 @@
-export type Business = {
+export type Item = {
     id: string;
     title: string;
     turnover?: string;

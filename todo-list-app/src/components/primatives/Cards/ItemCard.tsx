@@ -9,7 +9,7 @@ const useStyles = makeStyles({
 });
 
 
-interface BusinessCardProps {
+interface ItemCardProps {
     title: React.ReactNode;
     svgSrc: string;
     svgAlt: string;
@@ -19,7 +19,7 @@ interface BusinessCardProps {
     footerContent?: React.ReactNode;
 }
 
-const BusinessCard: React.FC<BusinessCardProps> = React.memo(({ 
+const ItemCard: React.FC<ItemCardProps> = React.memo(({ 
     title,
     svgSrc,
     svgAlt,
@@ -72,4 +72,4 @@ const BusinessCard: React.FC<BusinessCardProps> = React.memo(({
     );
 });
 
-export default BusinessCard;
+export default ItemCard;

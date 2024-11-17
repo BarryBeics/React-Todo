@@ -1,7 +1,7 @@
 import { Subtitle2, Body1, useThemeClassName } from '@fluentui/react-components';
 import { CheckmarkCircle24Filled, Delete24Filled } from '@fluentui/react-icons';
-import type { Business } from '../../../types/Business';
-import BusinessCard from '../../primatives/Cards/BusinessCard';
+import type { Item } from '../../../types/Item';
+import ItemCard from '../Cards/ItemCard';
 import ConfirmationDialog from '../DialogBox/ConfirmationDialog';
 import useActionDialog from '../../../hooks/useActionDialog';
 import IconButton from '../../primatives/Buttons/IconButton';
@@ -10,7 +10,7 @@ import undrawTodoList from '../../../assets/undraw_to_do_list.svg';
 import './Lists.css'; 
 
 interface TaskListProps {
-    tasks: Business[];
+    tasks: Item[];
     markAsComplete: (taskId: string) => void;
     deleteTask?: (taskId: string) => void; // Optional, as completed tasks don't need deletion
     showCompleted: boolean;  // Filter for completed or incomplete tasks
@@ -34,7 +34,7 @@ const TaskList: React.FC<TaskListProps> = ({
             {tasks
                 .filter(task => task.completed === showCompleted)
                 .map(task => (
-                    <BusinessCard
+                    <ItemCard
                         key={task.id}
                         title={<Subtitle2>{task.title}</Subtitle2>} // Use Subtitle2 for consistent styling        
                         svgSrc={undrawTodoList}
@@ -82,7 +82,7 @@ const TaskList: React.FC<TaskListProps> = ({
                     >
                         {/* Task Description */}
                         {task.description && <Body1>{task.description}</Body1>}
-                    </BusinessCard>
+                    </ItemCard>
                 ))}
 
             {/* Confirmation Dialog */}
