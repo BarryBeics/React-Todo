@@ -2,7 +2,6 @@ import { FluentProvider, teamsLightTheme, teamsDarkTheme } from '@fluentui/react
 import useManageItems from './hooks/useManageItems';
 import { useState } from 'react';
 import { FavouriteList, InputForm, TodoList } from './components/templates';
-import WrapperCard from './components/primatives/Cards/WrapperCard';
 import ToggleTheme from './components/primatives/ToggleTheme/ToggleTheme';
 
 const App: React.FC = () => {
@@ -15,7 +14,7 @@ const App: React.FC = () => {
 
   return (
     <FluentProvider theme={isDarkMode ? teamsDarkTheme : teamsLightTheme}>
-      <WrapperCard>        
+          
         <ToggleTheme 
           isDarkMode={isDarkMode} 
           toggleTheme={toggleTheme} 
@@ -43,7 +42,7 @@ const App: React.FC = () => {
             markAsFavourite={markAsFavourite}
             />
             
-            </WrapperCard>
+            
         </FluentProvider>
     );
 };
