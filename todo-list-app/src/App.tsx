@@ -1,7 +1,7 @@
 import { FluentProvider, teamsLightTheme, teamsDarkTheme } from '@fluentui/react-components';
 import useManageItems from './hooks/useManageItems';
 import { useState } from 'react';
-import { FavouriteList, InputForm, TodoList } from './components/templates';
+import { FavouriteList, InputForm, ItemList, RevealCodeForm } from './components/templates';
 import ToggleTheme from './components/primatives/ToggleTheme/ToggleTheme';
 
 const App: React.FC = () => {
@@ -19,7 +19,9 @@ const App: React.FC = () => {
           isDarkMode={isDarkMode} 
           toggleTheme={toggleTheme} 
         />
-            
+            {/* Reveal Code Form for revealing hidden Items */}
+            <RevealCodeForm
+            />
             
             {/* Input Form for adding Items */}
             <InputForm 
@@ -29,8 +31,8 @@ const App: React.FC = () => {
               error={error} 
             />
  
-            {/* Todo List */}
-            <TodoList 
+            {/* Item List */}
+            <ItemList 
               items={items} 
               markAsFavourite={markAsFavourite} 
               deleteItem={deleteItem}

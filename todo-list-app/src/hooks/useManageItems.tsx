@@ -7,11 +7,12 @@ const STORAGE_KEY = 'items';
 
 export function useManageItems() {
     const [items, setItems] = useState<Item[]>(() => loadFromLocalStorage<Item[]>(STORAGE_KEY, sampleItems));
-    const [newItem, setNewItem] = useState<{ title: string; turnover: string; leasehold: string; description: string }>({ 
+    const [newItem, setNewItem] = useState<{ title: string; turnover: string; leasehold: string; description: string; hiddenCode: string; }>({ 
         title: '', 
         turnover: '', 
         leasehold: '', 
-        description: '' });
+        description: '',
+        hiddenCode: '' });
     const [error, setError] = useState<string | null>(null); 
 
     useEffect(() => {
@@ -39,11 +40,12 @@ export function useManageItems() {
             turnover: newItem.turnover?.trim() || '',
             leasehold: newItem.leasehold?.trim() || '',
             description: newItem.description?.trim() || '',
-            favourite: false
+            favourite: false,
+            hiddenCode: newItem.hiddenCode?.trim() || ''
         };
 
         setItems(prevItems => [...prevItems, newItemObj]);
-        setNewItem({ title: '', turnover: '', leasehold: '', description: '' });  // Clear the form after adding
+        setNewItem({ title: '', turnover: '', leasehold: '', description: '', hiddenCode: '' });  // Clear the form after adding
         setError(null); // Clear error if Item was added successfully
     }, [newItem]);
 

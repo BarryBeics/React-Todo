@@ -10,7 +10,8 @@ interface InputFormProps {
     newItem: { title: string; 
             turnover: string;   
            leasehold: string; 
-         description: string };
+         description: string;
+          hiddenCode: string };
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>, field: string) => void;
     handleAddItem: () => void;
     error: string | null;
@@ -78,6 +79,16 @@ const InputForm: React.FC<InputFormProps> = ({ newItem, handleInputChange, handl
                         name="description"
                         value={newItem.description}
                         onChange={(e) => handleInputChange(e, 'description')}
+                        className={`fui-Input ${themeClassName}`}
+                        />
+                </Field>
+                {/* Optional item Description Input */}
+                <Field>
+                    <Input
+                        placeholder="Will be moved to admin page..."
+                        name="hiddenCode"
+                        value={newItem.hiddenCode}
+                        onChange={(e) => handleInputChange(e, 'hiddenCode')}
                         className={`fui-Input ${themeClassName}`}
                         />
                 </Field>
